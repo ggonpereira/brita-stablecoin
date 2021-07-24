@@ -1,0 +1,43 @@
+@import "../../styles/variables";
+
+header {
+  max-width: 1140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  height: 90px;
+
+  a {
+    img {
+      max-width: 120px;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+
+      li a {
+        padding: 10px 15px;
+        text-decoration: none;
+        color: $dark;
+        font: 600 1.6rem "Roboto", sans-serif;
+        text-transform: uppercase;
+        transition: all 0.3s;
+        display: inline-block;
+
+        &:hover {
+          color: $black;
+          transform: scale(1.01);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &:not(:first-of-type) {
+    margin-top: 20px;
+  }
+
+  label {
+    font-size: 1.5rem;
+    color: $dark;
+  }
+
+  input {
+    height: 35px;
+    border-radius: 4px;
+    outline: none;
+    border: 1.5px solid #e2e5e5;
+    background-color: #fafafa;
+    padding: 5px 10px;
+    font-size: 1.6rem;
+  }
+}
