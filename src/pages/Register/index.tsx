@@ -27,11 +27,7 @@ const Register: React.FC = (): JSX.Element => {
     setRegistering(true);
 
     try {
-      const authenticate = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      console.log(authenticate);
+      await auth.createUserWithEmailAndPassword(email, password);
       history.push("/login");
     } catch (error) {
       console.log(error);

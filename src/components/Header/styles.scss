@@ -24,18 +24,55 @@ header {
       display: flex;
       align-items: center;
 
-      li a {
-        padding: 10px 15px;
-        text-decoration: none;
-        color: $dark;
-        font: 600 1.6rem "Roboto", sans-serif;
-        text-transform: uppercase;
-        transition: all 0.3s;
-        display: inline-block;
+      li {
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          height: 45px;
+          border: 2px solid $primary-dark;
+          opacity: 0.8;
+          border-radius: 6px;
+          padding: 0 22px;
+          cursor: pointer;
+          background-color: $white;
+          color: $primary-dark;
+          text-transform: uppercase;
+          font: 600 1.6rem "Poppins", sans-serif;
+          transition: all 0.3s;
+          margin-left: 15px;
 
-        &:hover {
-          color: $black;
-          transform: scale(1.01);
+          &:hover {
+            background-color: $primary-dark;
+            color: $white;
+
+            img {
+              filter: invert(100%) sepia(73%) saturate(1380%) hue-rotate(193deg)
+                brightness(120%) contrast(96%);
+            }
+          }
+
+          img {
+            transition: filter 0.3s;
+            filter: invert(45%) sepia(46%) saturate(5245%) hue-rotate(233deg)
+              brightness(102%) contrast(87%);
+          }
+        }
+
+        a {
+          padding: 10px 15px;
+          text-decoration: none;
+          color: $primary-dark;
+          opacity: 0.8;
+          font: 600 1.6rem "Roboto", sans-serif;
+          text-transform: uppercase;
+          transition: all 0.3s;
+          display: inline-block;
+
+          &:hover {
+            opacity: 1;
+          }
         }
       }
     }

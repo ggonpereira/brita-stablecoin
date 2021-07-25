@@ -9,7 +9,7 @@ type IButtonProps = {
 
 const FormButton: FC<IButtonProps> = ({ children, ...rest }) => {
   return (
-    <button type="submit" {...rest}>
+    <button className="form-button" type="submit" {...rest}>
       {children}
     </button>
   );

@@ -24,11 +24,7 @@ const Login: React.FC = (): JSX.Element => {
     setLoggingIn(true);
 
     try {
-      const authenticate = await auth.signInWithEmailAndPassword(
-        email,
-        password
-      );
-      console.log(authenticate);
+      await auth.signInWithEmailAndPassword(email, password);
       history.push("/profile");
     } catch (error) {
       console.log(error);
@@ -37,7 +33,6 @@ const Login: React.FC = (): JSX.Element => {
       } else {
         setError("Usuário ou senha inválida.");
       }
-
       setLoggingIn(false);
     }
   };

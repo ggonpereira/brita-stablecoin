@@ -13,7 +13,6 @@ import "./styles.scss";
 
 const Home: React.FC = (): JSX.Element => {
   const { britaPrice, bitcoinPrice, loading } = useGetPrices();
-
   return (
     <div id="home-page">
       <div className="hero">

@@ -20,7 +20,7 @@ function generateDate(date: Date) {
 async function fetchBritaPrice(url: string) {
   let { data } = await axios.get<IBritaApiResponse>(url);
 
-  if (data.value[1]) return data.value[1].cotacaoCompra;
+  if (data.value.slice(-1)[0]) return data.value.slice(-1)[0].cotacaoCompra;
   else return data.value[0].cotacaoCompra;
 }
 
@@ -31,10 +31,10 @@ export default function useGetPrices() {
 
   // Creating a URL that gets a period of dates: from yesterday to today. If today hasn't any price yet, then will assume yesterday's price
   const dateToday = generateDate(new Date());
-  const yesterdayDate = generateDate(
-    new Date(Date.now() - 24 * 60 * 60 * 1000)
+  const dateDaysAgo = generateDate(
+    new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
   );
-  const url = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=${yesterdayDate}&@dataFinalCotacao=${dateToday}`;
+  const url = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=${dateDaysAgo}&@dataFinalCotacao=${dateToday}`;
 
   // Fetching the price of USD/BRL to define Brita Price
   useEffect(() => {

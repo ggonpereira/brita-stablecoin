@@ -1,10 +1,22 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
+import signOut from "../../assets/images/sign-out.svg";
 import "./styles.scss";
+import { auth } from "../../services/firebase";
 
 export default function Header() {
+  const history = useHistory();
+  const authenticated = auth.currentUser;
+
+  const Logout = () => {
+    auth
+      .signOut()
+      .then(() => history.push("/login"))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <header>
       <Link to="/">
@@ -15,12 +27,28 @@ export default function Header() {
           <li>
             <Link to="/">Início</Link>
           </li>
-          <li>
-            <Link to="/register">Registrar</Link>
-          </li>
+          {!authenticated && (
+            <>
+              <li>
+                <Link to="/register">Registrar</Link>
+              </li>
+              <li>
+                <Link to="/login">Entrar</Link>
+              </li>
+            </>
+          )}
+
           <li>
             <Link to="/trade">Fazer trade</Link>
           </li>
+          {authenticated && (
+            <li>
+              <button onClick={() => Logout()}>
+                Sair
+                <img src={signOut} alt="" />
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
