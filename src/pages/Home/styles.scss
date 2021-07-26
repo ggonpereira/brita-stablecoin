@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
-#home-page {
+#home-page,
+#trade-main-page {
   .hero {
     background-color: $white;
     background-image: url("../../assets/images/background.jpg");
@@ -35,29 +36,6 @@
 
           &:hover {
             opacity: 1;
-          }
-        }
-
-        a {
-          text-align: center;
-          padding: 0 30px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 15px;
-
-          margin-top: 80px;
-          height: 50px;
-          background-color: $primary;
-          color: $white;
-          border-radius: 30px;
-          font: 500 1.8rem "Roboto", sans-serif;
-
-          transition: all 0.3s;
-
-          &:hover {
-            background-color: $primary-dark;
-            box-shadow: 0px 4px 22px 1px rgba(54, 64, 95, 0.123);
           }
         }
       }

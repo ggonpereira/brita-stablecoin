@@ -1,17 +1,19 @@
 import React, { FC, useContext } from "react";
 import { AccountDataContext } from "../../contexts/AccountData";
 
-import "./styles.scss";
+import "../BuyBrlCard/styles.scss";
 
-interface IBuyCoinCardProps {
+interface IBuyBrlCardProps {
   coinName: string;
-  price: string;
   loading: boolean;
+  bitcoinPrice: string;
+  britaPrice: string;
   setBritasBought?: any;
   setBritasSold?: any;
   setBitcoinsBought?: any;
   setBitcoinsSold?: any;
-  handleChangeCoinsInAccount: any;
+  handleChangeBitcoinsInAccount?: any;
+  handleChangeBritasInAccount?: any;
 }
 
 // Dealing with numbers with "," as decimal separator
@@ -19,25 +21,47 @@ function parseMoney(val: string): number {
   return Number(val.trim().replace(".", "").replace(",", "."));
 }
 
-const BuyBrlCard: FC<IBuyCoinCardProps> = ({
+const BuyBrlCard: FC<IBuyBrlCardProps> = ({
   coinName,
-  price,
   loading,
+  bitcoinPrice,
+  britaPrice,
   setBritasBought,
   setBritasSold,
   setBitcoinsBought,
   setBitcoinsSold,
-  handleChangeCoinsInAccount,
+  handleChangeBitcoinsInAccount,
+  handleChangeBritasInAccount,
 }) => {
   const { britas, bitcoins } = useContext(AccountDataContext);
 
   function handleTransaction(e: React.ChangeEvent<HTMLInputElement>) {
     if (coinName === "Brita") {
-      setBritasBought(e.target.value);
-      return setBitcoinsSold(e.target.value);
+      const totalBritaPrice = Number(e.target.value) * parseMoney(britaPrice);
+
+      const bitcoinsToSell = totalBritaPrice / parseMoney(bitcoinPrice);
+      setBritasBought(Number(e.target.value));
+      return setBitcoinsSold(bitcoinsToSell);
     }
-    setBitcoinsBought(e.target.value);
-    return setBritasSold(e.target.value);
+    const totalBitcoinPrice = Number(e.target.value) * parseMoney(bitcoinPrice);
+
+    const britasToSell = totalBitcoinPrice / parseMoney(britaPrice);
+    setBitcoinsBought(Number(e.target.value));
+    return setBritasSold(britasToSell);
+  }
+
+  function actualCoinPrice(): string {
+    if (coinName === "Brita") return britaPrice;
+    else return bitcoinPrice;
+  }
+
+  function showCoinEquivalent(coinName: string) {
+    if (coinName === "Brita") {
+      const equivalent = parseMoney(britaPrice) / parseMoney(bitcoinPrice);
+      return equivalent.toFixed(10);
+    }
+    const equivalent = parseMoney(bitcoinPrice) / parseMoney(britaPrice);
+    return equivalent.toFixed(2);
   }
 
   return (
@@ -50,26 +74,48 @@ const BuyBrlCard: FC<IBuyCoinCardProps> = ({
 
           <p>
             <strong>R$ </strong>
-            <span>{!loading ? price : "Carregando..."}</span>
+            <span>{!loading ? actualCoinPrice() : "Carregando..."}</span>
           </p>
         </div>
 
         <div className="bottom">
           <div className="transaction-resume">
             <span>
-              Total: <span>{coinName === "Brita" ? britas : bitcoins}</span>
+              Total em conta:{" "}
+              <span>
+                {coinName === "Brita" ? britas.toFixed(2) : bitcoins.toFixed(8)}
+              </span>{" "}
+              <small>{coinName === "Brita" ? "(BRI)" : "(BTC)"}</small>
             </span>
+            <p>
+              <strong>1 {coinName}s</strong> = {showCoinEquivalent(coinName)}
+              <strong> {coinName === "Brita" ? "(BTC)" : "(BRI)"}</strong>
+            </p>
           </div>
 
           <input
             type="number"
-            placeholder="3"
+            placeholder="Formato dos decimais: 0.5"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               handleTransaction(e);
             }}
           />
 
-          <button onClick={handleChangeCoinsInAccount}>Comprar</button>
+          {coinName === "Brita" ? (
+            <button
+              className={coinName.toLowerCase()}
+              onClick={handleChangeBitcoinsInAccount}
+            >
+              Comprar Brita
+            </button>
+          ) : (
+            <button
+              className={coinName.toLowerCase()}
+              onClick={handleChangeBritasInAccount}
+            >
+              Comprar Bitcoin
+            </button>
+          )}
         </div>
       </div>
     </div>

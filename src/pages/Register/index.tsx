@@ -12,7 +12,6 @@ import "./styles.scss";
 
 const Register: React.FC = (): JSX.Element => {
   const [registering, setRegistering] = useState<boolean>(false);
-  // const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPw, setConfirmPw] = useState<string>("");
@@ -58,8 +57,9 @@ const Register: React.FC = (): JSX.Element => {
           <h1>Faça já seu cadastro e aproveite o melhor do mundo cripto!</h1>
           <p className="subtitle">
             Seu cadastro é fácil, rápido e seguro. Todos os seus dados ficam
-            guardados em segurança em nossos servidores e nunca iremos
-            compartilhá-los com terceiros, fique tranquilo(a). :)
+            guardados em segurança em nossos servidores
+            <br /> e nunca iremos compartilhá-los com terceiros, fique
+            tranquilo(a) 😀
           </p>
           <form onSubmit={handleFormSubmit}>
             <div className="main-form">

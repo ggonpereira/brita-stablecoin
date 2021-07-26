@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Route, RouteProps } from "react-router-dom";
+import {} from "react-router-dom";
 import { auth } from "../services/firebase";
 
 import AuthRoute from "../components/AuthRoute/index";

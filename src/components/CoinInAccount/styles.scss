@@ -1,0 +1,51 @@
+@import "../../styles/variables";
+
+.coinsInAccount {
+  display: flex;
+  align-items: center;
+
+  .moneyInAccount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 45px;
+    border-radius: 6px;
+    padding: 0 15px;
+    cursor: default;
+    color: $white;
+    text-transform: uppercase;
+    font: 600 1.6rem "Poppins", sans-serif;
+    margin-left: 5px;
+
+    strong {
+      font-size: 1.8rem;
+      font: 700 1.6rem "Poppins", sans-serif;
+    }
+
+    &.bitcoinsInAccount {
+      background: linear-gradient(
+        107deg,
+        #ffaf4e 0%,
+        #ffc073 39%,
+        #ffd097 100%
+      );
+      cursor: pointer;
+    }
+
+    &.britasInAccount {
+      background: linear-gradient(
+        107deg,
+        #9d7cff 0%,
+        #bba4ff 39%,
+        #d0c0ff 100%
+      );
+      cursor: pointer;
+    }
+
+    &.reaisInAccount {
+      color: $primary;
+      border: 2px solid$primary;
+      background-color: $white;
+    }
+  }
+}

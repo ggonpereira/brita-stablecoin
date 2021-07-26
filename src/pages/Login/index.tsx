@@ -25,14 +25,23 @@ const Login: React.FC = (): JSX.Element => {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      const verifyStoredData = localStorage.getItem(
+        "@brita-stablecoin:accountData"
+      );
 
-      const initialAccountData = JSON.stringify({
-        money: 100000,
-        transactions: [],
-        britas: 0,
-        bitcoins: 0,
-      });
-      localStorage.setItem("@brita-stablecoin:accountData", initialAccountData);
+      if (!verifyStoredData) {
+        const initialAccountData = JSON.stringify({
+          money: 100000,
+          transactions: [],
+          britas: 0,
+          bitcoins: 0,
+        });
+        localStorage.setItem(
+          "@brita-stablecoin:accountData",
+          initialAccountData
+        );
+      }
+
       history.push("/profile");
     } catch (error) {
       console.log(error);
@@ -61,9 +70,9 @@ const Login: React.FC = (): JSX.Element => {
           </h1>
           <p className="subtitle">
             Assim que você fizer seu login você já estará apto à fazer trade em
-            nossa plataforma. Disponibilizamos sempre os melhores preços e
-            segurança para você. E o melhor, não precisa de nenhum tipo de
-            confirmação! :)
+            nossa plataforma. Disponibilizamos sempre os melhores preços
+            <br /> e segurança para você. E o melhor, não precisa de nenhum tipo
+            de confirmação! 😀
           </p>
           <form onSubmit={handleFormSubmit}>
             <div className="main-form">

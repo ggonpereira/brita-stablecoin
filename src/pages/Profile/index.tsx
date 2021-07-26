@@ -1,6 +1,4 @@
-import React from "react";
-
-// import useGetPrices from "../../hooks/useGetPrices";
+import React, { useState } from "react";
 
 import Header from "../../components/Header/index";
 import Container from "../../components/Container";
@@ -17,16 +15,21 @@ interface ITransactionProps {
 }
 
 const Profile: React.FC = (): JSX.Element => {
+  const [noOfElements, setNoOfElements] = useState(8);
+
   const storedData = localStorage.getItem("@brita-stablecoin:accountData");
   let parsedData;
   if (storedData) parsedData = JSON.parse(storedData);
+
+  const loadedTransactions = parsedData.transactions.slice(0, noOfElements);
 
   return (
     <div id="profile-page">
       <Header />
       <Container>
         <main>
-          <h1>Seu perfil.</h1>
+          <h1>Seu perfil</h1>
+          <h3>Aqui você confere todas as transações efetuadas em sua conta!</h3>
 
           <div className="table-container">
             <table>
@@ -43,7 +46,7 @@ const Profile: React.FC = (): JSX.Element => {
               </thead>
               <tbody>
                 {parsedData &&
-                  parsedData.transactions.map(
+                  loadedTransactions.map(
                     (transaction: ITransactionProps, index: number) => {
                       return (
                         <tr key={index}>
@@ -61,6 +64,9 @@ const Profile: React.FC = (): JSX.Element => {
               </tbody>
             </table>
           </div>
+          <button onClick={() => setNoOfElements(noOfElements + 8)}>
+            Carregar mais
+          </button>
         </main>
       </Container>
     </div>

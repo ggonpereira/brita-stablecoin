@@ -58,7 +58,11 @@ const SellBrlCard: FC<ISellBrlCardProps> = ({
         <div className="bottom">
           <div className="transaction-resume">
             <span>
-              Total: <span>{coinName === "Brita" ? britas : bitcoins}</span>
+              Total em conta:{" "}
+              <span>
+                {coinName === "Brita" ? britas.toFixed(2) : bitcoins.toFixed(8)}
+              </span>{" "}
+              <small>{coinName === "Brita" ? "(BRI)" : "(BTC)"}</small>
             </span>
             <p>
               <strong>R$</strong> {moneyInTransaction.toFixed(2)}
@@ -67,13 +71,16 @@ const SellBrlCard: FC<ISellBrlCardProps> = ({
 
           <input
             type="number"
-            placeholder="3"
+            placeholder="Formato dos decimais: 0.5"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               handleTransaction(e);
             }}
           />
 
-          <button onClick={() => handleChangeMoneyInAccount(false)}>
+          <button
+            className={coinName.toLowerCase()}
+            onClick={() => handleChangeMoneyInAccount(false)}
+          >
             Vender
           </button>
         </div>

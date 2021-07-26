@@ -4,24 +4,25 @@
   .container {
     main {
       margin-top: 80px;
+      margin-bottom: 120px;
 
       h1 {
-        color: $black;
-        // text-align: center;
+        color: $dark;
         font-size: 4.3rem;
         font-weight: 400;
         cursor: default;
+        text-align: center;
       }
 
       h3 {
         color: $dark;
         opacity: 0.6;
         font-weight: 300;
-        // text-align: center;
-        margin-top: 30px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
         font-size: 2rem;
         cursor: default;
-        transition: opacity 0.3s;
       }
 
       a {
@@ -50,23 +51,63 @@
       .table-container {
         overflow-x: auto;
         width: 100%;
+        border-radius: 6px;
+        border: 1px solid $primary-light;
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          border-radius: 6px;
+        }
+
+        th {
+          border-bottom: 1px solid $primary-light;
+          font: 500 1.45rem "Roboto", sans-serif;
+          color: $white;
+          background-color: $primary-light;
+        }
+
+        td,
+        th {
+          text-align: left;
+          padding: 8px;
+          text-align: center;
+
+          &:not(:first-child):not(:last-child) {
+            border-left: 1px solid $primary-light;
+            border-right: 1px solid $primary-light;
+          }
+        }
+
+        tr:nth-child(even) {
+          background-color: #ebe4ff91;
+        }
+
+        tr {
+          transition: background 0.2s;
+
+          &:hover {
+            background-color: #efeaff62;
+          }
+        }
       }
 
-      table {
-        border-collapse: collapse;
+      button {
         width: 100%;
-      }
+        height: 60px;
+        background-color: $primary;
+        margin-top: 30px;
+        border: 0;
+        border-radius: 6px;
+        color: $white;
+        font: 500 1.8rem "Roboto", sans-serif;
+        cursor: pointer;
+        transition: all 0.3s;
 
-      td,
-      th {
-        border: 1px solid #bebfc2;
-        text-align: left;
-        padding: 8px;
-        text-align: center;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f0f0f0;
+        &:hover {
+          background-color: $primary-dark;
+          box-shadow: 0px 4px 22px 1px rgba(54, 64, 95, 0.12);
+        }
       }
     }
   }

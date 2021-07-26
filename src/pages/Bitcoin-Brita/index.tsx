@@ -1,40 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import useGetPrices from "../../hooks/useGetPrices";
 
 import { AccountDataContext } from "../../contexts/AccountData";
 
 import BuyCoinCard from "../../components/BuyCoinCard/index";
-import SellBrlCard from "../../components/SellBrlCard";
 
 import Header from "../../components/Header/index";
 import Container from "../../components/Container";
 
 import "../Brl-Brita/styles.scss";
-import MoneyInAccount from "../../components/MoneyInAccount";
 
 const BitcoinBrita: React.FC = (): JSX.Element => {
-  const { britaPrice, bitcoinPrice, loading } = useGetPrices();
+  const { bitcoinPrice, britaPrice, loading } = useGetPrices();
 
-  const [moneyInTransaction, setMoneyInTransaction] = useState<number>(0);
   const [bitcoinsBought, setBitcoinsBought] = useState<number>(0);
   const [bitcoinsSold, setBitcoinsSold] = useState<number>(0);
   const [britasBought, setBritasBought] = useState<number>(0);
   const [britasSold, setBritasSold] = useState<number>(0);
 
   const {
+    money,
     transactions,
     setTransactions,
-    bitcoins,
-    setBitcoinsInAccount,
     britas,
     setBritasInAccount,
+    bitcoins,
+    setBitcoinsInAccount,
   } = useContext(AccountDataContext);
 
   function handleAddTransaction() {
     const newTransaction = {
-      moneyInAccount: null,
-      moneyInTransaction: null,
+      moneyInAccount: money,
+      moneyInTransaction: 0,
       britasBought: Number(britasBought),
       britasSold: Number(britasSold),
       bitcoinsBought: Number(bitcoinsBought),
@@ -46,64 +45,56 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
       newTransaction,
     ]);
   }
-  function handleChangeCoinsInAccount(buying: boolean, bitcoin: boolean) {
+
+  console.log(britasBought, bitcoinsSold);
+
+  function handleChangeBitcoinsInAccount(buying: boolean) {
     if (buying) {
-      if (bitcoin) {
-        if (britas < britasSold) {
-          return alert(
-            "Você não possui saldo suficiente para fazer essa transação"
-          );
-        } else {
-          setBritasInAccount(britas - britasSold);
-          setBitcoinsInAccount(bitcoins + bitcoinsBought);
-        }
+      if (bitcoins < bitcoinsSold) {
+        return toast.error(
+          "Você não possui saldo suficiente para fazer essa transação"
+        );
       } else {
-        console.log("oi");
-        if (bitcoins < bitcoinsSold) {
-          return alert(
-            "Você não possui saldo suficiente para fazer essa transação"
-          );
-        } else {
-          setBitcoinsInAccount(bitcoins - bitcoinsSold);
-          setBritasInAccount(britas + britasBought);
-        }
+        setBitcoinsInAccount(bitcoins - bitcoinsSold);
+        setBritasInAccount(Number(britas) + Number(britasBought));
       }
     } else {
-      if (bitcoin) {
-        if (bitcoins < bitcoinsSold) {
-          return alert(
-            "Você não possui saldo suficiente para fazer essa transação"
-          );
-        } else {
-          setBritasInAccount(britas + britasBought);
-          setBitcoinsInAccount(bitcoins - bitcoinsSold);
-        }
+      if (britas < britasSold) {
+        return toast.error(
+          "Você não possui saldo suficiente para fazer essa transação"
+        );
       } else {
-        if (britas < britasSold) {
-          return alert(
-            "Você não possui saldo suficiente para fazer essa transação"
-          );
-        } else {
-          setBitcoinsInAccount(bitcoins + bitcoinsBought);
-          setBritasInAccount(britas - britasSold);
-        }
+        setBitcoinsInAccount(bitcoins + bitcoinsBought);
+        setBritasInAccount(Number(britas) - Number(britasSold));
       }
     }
 
     handleAddTransaction();
   }
 
-  useEffect(() => {
-    const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const newArray = { ...dataParsed, bitcoins: Number(bitcoins) };
-      localStorage.setItem(
-        "@brita-stablecoin:accountData",
-        JSON.stringify(newArray)
-      );
+  function handleChangeBritasInAccount(buying: boolean) {
+    if (buying) {
+      if (britas < britasSold) {
+        return toast.error(
+          "Você não possui saldo suficiente para fazer essa transação"
+        );
+      } else {
+        setBritasInAccount(britas - britasSold);
+        setBitcoinsInAccount(Number(bitcoins) + Number(bitcoinsBought));
+      }
+    } else {
+      if (britas < britasSold) {
+        return toast.error(
+          "Você não possui saldo suficiente para fazer essa transação"
+        );
+      } else {
+        setBritasInAccount(britas + britasBought);
+        setBitcoinsInAccount(Number(bitcoins) - Number(bitcoinsSold));
+      }
     }
-  }, [bitcoins]);
+
+    handleAddTransaction();
+  }
 
   useEffect(() => {
     const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
@@ -121,6 +112,18 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
     if (dataStored) {
       const dataParsed = JSON.parse(dataStored);
+      const newArray = { ...dataParsed, bitcoins: Number(bitcoins) };
+      localStorage.setItem(
+        "@brita-stablecoin:accountData",
+        JSON.stringify(newArray)
+      );
+    }
+  }, [bitcoins]);
+
+  useEffect(() => {
+    const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
+    if (dataStored) {
+      const dataParsed = JSON.parse(dataStored);
       const newArray = { ...dataParsed, transactions };
       localStorage.setItem(
         "@brita-stablecoin:accountData",
@@ -131,22 +134,39 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
 
   return (
     <div id="trade-page">
+      <Toaster />
       <div className="hero">
         <Header />
         <Container>
           <main>
-            <h1>Teste.</h1>
+            <h1>Compre Brita usando reais facilmente!</h1>
+            <h3>
+              Aproveite nossa facilidade de trocas e taxas mínimas para comprar
+              ou vender as criptomoedas desejadas!
+            </h3>
 
             <section>
               <BuyCoinCard
                 coinName="Brita"
-                price={britaPrice}
                 loading={loading}
+                britaPrice={britaPrice}
+                bitcoinPrice={bitcoinPrice}
                 setBritasBought={setBritasBought}
                 setBritasSold={setBritasSold}
                 setBitcoinsBought={setBitcoinsBought}
                 setBitcoinsSold={setBitcoinsSold}
-                handleChangeCoinsInAccount={handleChangeCoinsInAccount}
+                handleChangeBitcoinsInAccount={handleChangeBitcoinsInAccount}
+              />
+              <BuyCoinCard
+                coinName="Bitcoin"
+                loading={loading}
+                britaPrice={britaPrice}
+                bitcoinPrice={bitcoinPrice}
+                setBritasBought={setBritasBought}
+                setBritasSold={setBritasSold}
+                setBitcoinsBought={setBitcoinsBought}
+                setBitcoinsSold={setBitcoinsSold}
+                handleChangeBritasInAccount={handleChangeBritasInAccount}
               />
             </section>
           </main>

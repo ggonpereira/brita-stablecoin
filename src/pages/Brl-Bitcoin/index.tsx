@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import useGetPrices from "../../hooks/useGetPrices";
 
@@ -11,7 +12,6 @@ import Header from "../../components/Header/index";
 import Container from "../../components/Container";
 
 import "../Brl-Brita/styles.scss";
-import MoneyInAccount from "../../components/MoneyInAccount";
 
 const BrlBitcoin: React.FC = (): JSX.Element => {
   const { bitcoinPrice, loading } = useGetPrices();
@@ -48,7 +48,7 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
   function handleChangeMoneyInAccount(buying: boolean) {
     if (buying) {
       if (money < moneyInTransaction) {
-        return alert(
+        return toast.error(
           "Você não possui saldo suficiente para fazer essa transação"
         );
       } else {
@@ -56,7 +56,7 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
       }
     } else {
       if (bitcoins < bitcoinsSold) {
-        return alert(
+        return toast.error(
           "Você não possui saldo suficiente para fazer essa transação"
         );
       } else {
@@ -114,11 +114,16 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
 
   return (
     <div id="trade-page">
+      <Toaster />
       <div className="hero">
         <Header />
         <Container>
           <main>
-            <h1>Teste.</h1>
+            <h1>Compre Bitcoin usando reais facilmente!</h1>
+            <h3>
+              Aproveite nossa facilidade de trocas e taxas mínimas para comprar
+              ou vender as criptomoedas desejadas!
+            </h3>
 
             <section>
               <BuyBrlCard
