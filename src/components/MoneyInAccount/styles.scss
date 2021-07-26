@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.moneyInAccount {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 45px;
+  border-radius: 6px;
+  padding: 0 22px;
+  cursor: default;
+  background-color: $primary;
+  color: $white;
+  text-transform: uppercase;
+  font: 600 1.6rem "Poppins", sans-serif;
+  margin-left: 15px;
+
+  strong {
+    font-size: 1.8rem;
+    font: 700 1.6rem "Poppins", sans-serif;
+  }
+}

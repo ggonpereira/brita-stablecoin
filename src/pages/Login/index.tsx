@@ -25,6 +25,14 @@ const Login: React.FC = (): JSX.Element => {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
+
+      const initialAccountData = JSON.stringify({
+        money: 100000,
+        transactions: [],
+        britas: 0,
+        bitcoins: 0,
+      });
+      localStorage.setItem("@brita-stablecoin:accountData", initialAccountData);
       history.push("/profile");
     } catch (error) {
       console.log(error);
