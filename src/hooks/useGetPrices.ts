@@ -13,8 +13,7 @@ function generateDate(date: Date) {
   const day = formatDate(date.getDate());
   const month = formatDate(date.getMonth() + 1);
   const year = date.getFullYear();
-  const dateToday = `'${month}-${day}-${year}'`;
-  return dateToday;
+  return `'${month}-${day}-${year}'`;
 }
 
 async function fetchBritaPrice(url: string) {
