@@ -49,6 +49,8 @@ $ cd brita-stablecoin
 - Create a Firebase project here:
 https://firebase.google.com/
 
+- Register the project as a Web App
+
 - Now copy the SDK project configuration keys and edit the ".env.local.example" file with your data
 
 - Then remove the ".example" from the name, letting it with the name ".env.local"
