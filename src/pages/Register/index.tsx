@@ -97,7 +97,7 @@ const Register: React.FC = (): JSX.Element => {
                 required
                 autoComplete="new-password"
               />
-              <FormButton disabled={registering}>Enviar</FormButton>
+              <FormButton disabled={registering}>Registrar</FormButton>
 
               <ErrorText>{error}</ErrorText>
             </div>
