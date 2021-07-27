@@ -1,10 +1,8 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
+
+import { IErrorTextProps } from "../../interfaces";
 
 import "./styles.scss";
-
-interface IErrorTextProps {
-  children: ReactNode;
-}
 
 const ErrorText: FC<IErrorTextProps> = ({ children }) => {
   if (!children) return null;

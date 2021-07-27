@@ -46,8 +46,6 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     ]);
   }
 
-  console.log(britasBought, bitcoinsSold);
-
   function handleChangeBitcoinsInAccount(buying: boolean) {
     if (buying) {
       if (bitcoins < bitcoinsSold) {

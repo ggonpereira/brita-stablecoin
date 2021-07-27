@@ -1,12 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
-import "./styles.scss";
+import { IButtonProps } from "../../interfaces";
 
-interface IButtonProps {
-  toUrl: string;
-  children: ReactNode;
-}
+import "./styles.scss";
 
 const Button: FC<IButtonProps> = ({ toUrl, children }) => {
   return (

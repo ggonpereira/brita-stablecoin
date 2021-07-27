@@ -17,7 +17,6 @@ import { auth } from "../services/firebase";
 
 export default function Routes() {
   return (
-    // <PriceContextProvider>
     <Switch>
       {!auth.currentUser && <CustomRoute path="/" exact component={Home} />}
       <CustomRoute path="/register" component={Register} />
@@ -31,6 +30,5 @@ export default function Routes() {
         <CustomRoute isPrivate path="/bitcoin-brita" component={BitcoinBrita} />
       </AccountDataProvider>
     </Switch>
-    // </PriceContextProvider>
   );
 }

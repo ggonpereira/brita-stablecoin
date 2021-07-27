@@ -1,19 +1,6 @@
-import React, { FC, useState, createContext, ReactNode } from "react";
+import React, { FC, useState, createContext } from "react";
 
-interface IAccountData {
-  money: number;
-  transactions: string[];
-  britas: number;
-  bitcoins: number;
-  setMoneyInAccount: any;
-  setTransactions: any;
-  setBritasInAccount: any;
-  setBitcoinsInAccount: any;
-}
-
-interface IAccountDataProviderProps {
-  children: ReactNode;
-}
+import { IAccountData, IAccountDataProviderProps } from "../interfaces";
 
 export const AccountDataContext = createContext({} as IAccountData);
 

@@ -24,7 +24,6 @@ export default function Header() {
   };
 
   return (
-    // <AccountDataProvider>
     <header>
       <Link to="/">
         <img src={logo} alt="Brita Stablecoin" />
@@ -70,6 +69,5 @@ export default function Header() {
       </nav>
       <Modal visible={visible} setVisible={setVisible} />
     </header>
-    // </AccountDataProvider>
   );
 }

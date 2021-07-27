@@ -1,15 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
-import { Route, RouteProps } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { auth } from "../services/firebase";
 
 import { css } from "@emotion/react";
-// import ClipLoader from "react-spinners/ClipLoader";
 import PuffLoader from "react-spinners/PuffLoader";
 
+import { ICustomRoutesProps } from "../interfaces";
+
 import AuthRoute from "../components/AuthRoute/index";
-interface ICustomRoutesProps extends RouteProps {
-  isPrivate?: boolean;
-}
 
 const override = css`
   display: block;

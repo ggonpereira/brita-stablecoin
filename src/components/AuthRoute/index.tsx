@@ -1,14 +1,11 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import { Redirect } from "react-router-dom";
 import { auth } from "../../services/firebase";
 
-export interface IAuthRouteProps {
-  children: ReactNode;
-}
+import { IAuthRouteProps } from "../../interfaces";
 
 const AuthRoute: FC<IAuthRouteProps> = ({ children }) => {
   if (!auth.currentUser) {
-    console.log("não achamos usuários, redirecionando...");
     return <Redirect to={"/login"} />;
   }
 

@@ -1,18 +1,9 @@
 import React, { FC, useContext } from "react";
 import { AccountDataContext } from "../../contexts/AccountData";
 
-import "./styles.scss";
+import { IBuyBrlCardProps } from "../../interfaces";
 
-interface IBuyBrlCardProps {
-  coinName: string;
-  price: string;
-  moneyInTransaction: number;
-  loading: boolean;
-  setMoneyInTransaction: any;
-  setBritasBought?: any;
-  setBitcoinsBought?: any;
-  handleChangeMoneyInAccount: any;
-}
+import "./styles.scss";
 
 // Dealing with numbers with "," as decimal separator
 function parseMoney(val: string): number {

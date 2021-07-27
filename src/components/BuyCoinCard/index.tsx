@@ -1,27 +1,16 @@
 import React, { FC, useContext } from "react";
 import { AccountDataContext } from "../../contexts/AccountData";
 
-import "../BuyBrlCard/styles.scss";
+import { IBuyCoinCardProps } from "../../interfaces";
 
-interface IBuyBrlCardProps {
-  coinName: string;
-  loading: boolean;
-  bitcoinPrice: string;
-  britaPrice: string;
-  setBritasBought?: any;
-  setBritasSold?: any;
-  setBitcoinsBought?: any;
-  setBitcoinsSold?: any;
-  handleChangeBitcoinsInAccount?: any;
-  handleChangeBritasInAccount?: any;
-}
+import "../BuyBrlCard/styles.scss";
 
 // Dealing with numbers with "," as decimal separator
 function parseMoney(val: string): number {
   return Number(val.trim().replace(".", "").replace(",", "."));
 }
 
-const BuyBrlCard: FC<IBuyBrlCardProps> = ({
+const BuyCoinCard: FC<IBuyCoinCardProps> = ({
   coinName,
   loading,
   bitcoinPrice,
@@ -122,4 +111,4 @@ const BuyBrlCard: FC<IBuyBrlCardProps> = ({
   );
 };
 
-export default BuyBrlCard;
+export default BuyCoinCard;

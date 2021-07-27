@@ -1,10 +1,8 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
+
+import { IContainerProps } from "../../interfaces";
 
 import "./styles.scss";
-
-interface IContainerProps {
-  children: ReactNode;
-}
 
 const Container: FC<IContainerProps> = ({ children }) => {
   return <div className="container">{children}</div>;

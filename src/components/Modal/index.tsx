@@ -1,16 +1,13 @@
 import React, { FC } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+import { IModalProps } from "../../interfaces";
+
 import signOut from "../../assets/images/sign-out.svg";
 import logo from "../../assets/images/logo.png";
 import hamburger from "../../assets/images/hamburger.svg";
 import { auth } from "../../services/firebase";
 import MoneyInAccount from "../CoinInAccount";
-
-interface IModalProps {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-}
 
 const Modal: FC<IModalProps> = ({ visible, setVisible }) => {
   const history = useHistory();

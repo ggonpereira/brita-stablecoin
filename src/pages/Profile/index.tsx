@@ -3,16 +3,9 @@ import React, { useState } from "react";
 import Header from "../../components/Header/index";
 import Container from "../../components/Container";
 
-import "./styles.scss";
+import { ITransactionProps } from "../../interfaces";
 
-interface ITransactionProps {
-  bitcoinsBought: number | null;
-  bitcoinsSold: number | null;
-  britasBought: string | number | null;
-  britasSold: string | number | null;
-  moneyInAccount: number | null;
-  moneyInTransaction: number | null;
-}
+import "./styles.scss";
 
 const Profile: React.FC = (): JSX.Element => {
   const [noOfElements, setNoOfElements] = useState(14);

@@ -1,13 +1,8 @@
-import React, { FC, InputHTMLAttributes } from "react";
+import React, { FC } from "react";
+
+import { InputProps } from "../../interfaces";
 
 import "./styles.scss";
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
-  type: string;
-  label: string;
-  stateListener: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 const Input: FC<InputProps> = ({
   name,
