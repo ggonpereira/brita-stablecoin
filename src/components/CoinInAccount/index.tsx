@@ -10,16 +10,16 @@ const MoneyInAccount: FC = () => {
   return (
     <div className="coinsInAccount">
       <Link to="/brl-bitcoin" className="bitcoinsInAccount moneyInAccount">
-        {dataParsed.bitcoins.toFixed(8)}
+        {dataParsed?.bitcoins.toFixed(8)}
         <strong> BTC</strong>
       </Link>
       <Link to="/brl-brita" className="britasInAccount moneyInAccount">
-        {dataParsed.britas.toFixed(2)}
+        {dataParsed?.britas.toFixed(2)}
         <strong> BRI</strong>
       </Link>
       <div className="reaisInAccount moneyInAccount">
         <strong>R$ </strong>
-        {dataParsed.money.toFixed(2)}
+        {dataParsed?.money.toFixed(2)}
       </div>
     </div>
   );

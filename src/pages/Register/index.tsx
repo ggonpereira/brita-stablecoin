@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import Input from "../../components/Input";
 
 import "./styles.scss";
+import HeaderNotLoggedIn from "../../components/HeaderNotLoggedIn";
 
 const Register: React.FC = (): JSX.Element => {
   const [registering, setRegistering] = useState<boolean>(false);
@@ -16,6 +17,9 @@ const Register: React.FC = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [confirmPw, setConfirmPw] = useState<string>("");
   const [error, setError] = useState<string>("");
+
+  const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
+  const dataParsed = dataStored && JSON.parse(dataStored);
 
   const history = useHistory();
 
@@ -51,7 +55,8 @@ const Register: React.FC = (): JSX.Element => {
 
   return (
     <div id="register-page">
-      <Header />
+      {auth.currentUser && dataParsed ? <Header /> : <HeaderNotLoggedIn />}
+
       <Container>
         <main>
           <h1>Faça já seu cadastro e aproveite o melhor do mundo cripto!</h1>

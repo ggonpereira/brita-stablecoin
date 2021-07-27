@@ -9,12 +9,16 @@ import Header from "../../components/Header";
 import Input from "../../components/Input";
 
 import "../Register/styles.scss";
+import HeaderNotLoggedIn from "../../components/HeaderNotLoggedIn";
 
 const Login: React.FC = (): JSX.Element => {
   const [loggingIn, setLoggingIn] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+
+  const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
+  const dataParsed = dataStored && JSON.parse(dataStored);
 
   const history = useHistory();
 
@@ -61,7 +65,8 @@ const Login: React.FC = (): JSX.Element => {
 
   return (
     <div id="login-page">
-      <Header />
+      {auth.currentUser && dataParsed ? <Header /> : <HeaderNotLoggedIn />}
+
       <Container>
         <main>
           <h1>

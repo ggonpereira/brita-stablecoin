@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useGetPrices from "../../hooks/useGetPrices";
 
 import Header from "../../components/Header/index";
+import HeaderNotLoggedIn from "../../components/HeaderNotLoggedIn/index";
 import Container from "../../components/Container";
 
 import icon from "../../assets/images/icon.png";
@@ -11,13 +12,19 @@ import bitcoin from "../../assets/images/bitcoin.png";
 
 import "./styles.scss";
 import Button from "../../components/Button";
+import { auth } from "../../services/firebase";
 
 const Home: React.FC = (): JSX.Element => {
   const { britaPrice, bitcoinPrice, loading } = useGetPrices();
+
+  const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
+  const dataParsed = dataStored && JSON.parse(dataStored);
+
   return (
     <div id="home-page">
       <div className="hero">
-        <Header />
+        {auth.currentUser && dataParsed ? <Header /> : <HeaderNotLoggedIn />}
+
         <Container>
           <main>
             <h1>Stablecoin rápida, descentralizada e segura.</h1>
