@@ -35,7 +35,7 @@
 ### Before you can start, you have to install this tools in your machine:
 
 - <b>[Git](https://git-scm.com)</b>
-- <b>[MySQL](https://www.mysql.com)</b>
+- <b>[NodeJS](https://nodejs.org/)</b>
 
 ### Then:
 
