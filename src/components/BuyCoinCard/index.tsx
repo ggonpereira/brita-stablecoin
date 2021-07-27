@@ -102,14 +102,14 @@ const BuyCoinCard: FC<IBuyCoinCardProps> = ({
               className={coinName.toLowerCase()}
               onClick={handleChangeBitcoinsInAccount}
             >
-              Comprar Brita
+              Comprar BRI com BTC
             </button>
           ) : (
             <button
               className={coinName.toLowerCase()}
               onClick={handleChangeBritasInAccount}
             >
-              Comprar Bitcoin
+              Comprar BTC com BRI
             </button>
           )}
         </div>

@@ -53,7 +53,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     if (buying) {
       if (bitcoins < bitcoinsSold) {
         return toast.error(
-          "Você não possui saldo suficiente para fazer essa transação"
+          "Você não possui moedas suficiente para fazer essa transação"
         );
       } else {
         setBitcoinsInAccount(bitcoins - bitcoinsSold);
@@ -63,7 +63,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     } else {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui saldo suficiente para fazer essa transação"
+          "Você não possui moedas suficiente para fazer essa transação"
         );
       } else {
         setBitcoinsInAccount(bitcoins + bitcoinsBought);
@@ -79,7 +79,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     if (buying) {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui saldo suficiente para fazer essa transação"
+          "Você não possui moedas suficiente para fazer essa transação"
         );
       } else {
         setBritasInAccount(britas - britasSold);
@@ -89,7 +89,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     } else {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui saldo suficiente para fazer essa transação"
+          "Você não possui moedas suficiente para fazer essa transação"
         );
       } else {
         setBritasInAccount(britas + britasBought);
@@ -124,6 +124,9 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
             <h3>
               Aproveite nossa facilidade de trocas e taxas mínimas para comprar
               ou vender as criptomoedas desejadas!
+              <br />
+              Aqui você pode trocar suas Britas por Bitcoins ou o contrário,
+              troque como quiser! 😀
             </h3>
 
             <section>
