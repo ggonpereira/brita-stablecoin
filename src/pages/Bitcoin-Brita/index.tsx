@@ -115,7 +115,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
 
   return (
     <div id="trade-page">
-      <Toaster />
+      <Toaster position="top-right" />
       <div className="hero">
         <Header />
         <Container>
