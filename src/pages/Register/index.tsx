@@ -98,13 +98,14 @@ const Register: React.FC = (): JSX.Element => {
                 autoComplete="new-password"
               />
               <FormButton disabled={registering}>Enviar</FormButton>
+
+              <ErrorText>{error}</ErrorText>
             </div>
 
             <footer>
               <p>
                 Já possui uma conta? <Link to="/login">Faça login</Link>
               </p>
-              <ErrorText>{error}</ErrorText>
             </footer>
           </form>
         </main>
