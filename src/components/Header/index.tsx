@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import { Link, useHistory } from "react-router-dom";
-// import AccountDataProvider from "../../contexts/AccountData";
 
 import signOut from "../../assets/images/sign-out.svg";
+
 import { auth } from "../../services/firebase";
 import MoneyInAccount from "../CoinInAccount";
 
 import "./styles.scss";
+import Modal from "../Modal";
 
 export default function Header() {
   const history = useHistory();
   const authenticated = auth.currentUser;
+
+  const [visible, setVisible] = useState<boolean>(false);
 
   const Logout = () => {
     auth
@@ -41,6 +44,7 @@ export default function Header() {
               </li>
             </>
           )}
+
           {authenticated && (
             <>
               <li>
@@ -49,19 +53,22 @@ export default function Header() {
               <li>
                 <Link to="/profile">Perfil</Link>
               </li>
-              <li>
-                <MoneyInAccount />
-              </li>
-              <li>
-                <button onClick={() => Logout()}>
-                  Sair
-                  <img src={signOut} alt="" />
-                </button>
-              </li>
+              <div className="buttons">
+                <li>
+                  <MoneyInAccount />
+                </li>
+                <li>
+                  <button onClick={() => Logout()}>
+                    Sair
+                    <img src={signOut} alt="" />
+                  </button>
+                </li>
+              </div>
             </>
           )}
         </ul>
       </nav>
+      <Modal visible={visible} setVisible={setVisible} />
     </header>
     // </AccountDataProvider>
   );

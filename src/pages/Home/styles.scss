@@ -62,6 +62,7 @@
 
       a {
         width: 70%;
+        max-width: 380px;
         height: 230px;
         padding: 30px 40px;
 
@@ -152,6 +153,60 @@
           max-width: 160px;
           height: 105px;
           transition: transform 0.3s;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  #home-page .hero,
+  #trade-main-page .hero {
+    .container {
+      article {
+        grid-template: auto / auto;
+
+        a.brita,
+        a.bitcoin {
+          width: 100%;
+          place-self: center;
+
+          img {
+            max-width: 150px;
+            height: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 740px) {
+  #home-page .hero,
+  #trade-main-page .hero {
+    .container main {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  #home-page .hero,
+  #trade-main-page .hero {
+    .container {
+      article {
+        a.brita,
+        a.bitcoin {
+          display: flex;
+          flex-direction: column;
+
+          img {
+            max-width: 85px;
+            height: 80px;
+
+            margin-left: auto;
+          }
         }
       }
     }

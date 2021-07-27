@@ -18,46 +18,27 @@ interface IAccountDataProviderProps {
 export const AccountDataContext = createContext({} as IAccountData);
 
 const AccountDataProvider: FC<IAccountDataProviderProps> = ({ children }) => {
+  const defaultAccountData = {
+    bitcoins: 0,
+    britas: 0,
+    money: 100000,
+    transactions: [],
+  };
+
   const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
+  const dataParsed = dataStored ? JSON.parse(dataStored) : defaultAccountData;
 
   const [moneyInAccount, setMoneyInAccount] = useState<number>(() => {
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const moneyStored = dataParsed.money;
-      return moneyStored;
-    }
-
-    return 100000;
+    return dataParsed.money;
   });
-
   const [britasInAccount, setBritasInAccount] = useState<number>(() => {
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const britasStored = dataParsed.britas;
-      return britasStored;
-    }
-
-    return 0;
+    return dataParsed.britas;
   });
-
   const [bitcoinsInAccount, setBitcoinsInAccount] = useState<number>(() => {
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const bitcoinsStored = dataParsed.bitcoins;
-      return bitcoinsStored;
-    }
-
-    return 0;
+    return dataParsed.bitcoins;
   });
-
   const [transactions, setTransactions] = useState<string[]>(() => {
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const transactionsStored = dataParsed.transactions;
-      return transactionsStored;
-    }
-
-    return 100000;
+    return dataParsed.transactions;
   });
 
   return (

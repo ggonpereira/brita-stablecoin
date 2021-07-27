@@ -13,16 +13,17 @@ import TradeMainPage from "../pages/Trade-Main-Page";
 import BrlBrita from "../pages/Brl-Brita";
 import BrlBitcoin from "../pages/Brl-Bitcoin";
 import BitcoinBrita from "../pages/Bitcoin-Brita";
+import { auth } from "../services/firebase";
 
 export default function Routes() {
   return (
     // <PriceContextProvider>
     <Switch>
-      {/* <CustomRoute path="/" exact component={Home} /> */}
+      {!auth.currentUser && <CustomRoute path="/" exact component={Home} />}
       <CustomRoute path="/register" component={Register} />
       <CustomRoute path="/login" component={Login} />
       <AccountDataProvider>
-        <CustomRoute path="/" exact component={Home} />
+        {auth.currentUser && <CustomRoute path="/" exact component={Home} />}
         <CustomRoute isPrivate path="/profile" component={Profile} />
         <CustomRoute isPrivate path="/trade" component={TradeMainPage} />
         <CustomRoute isPrivate path="/brl-brita" component={BrlBrita} />

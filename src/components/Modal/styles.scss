@@ -1,0 +1,92 @@
+@import "../../styles/variables";
+
+#myBtn,
+.modal {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  #myBtn {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $white;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 0.3s;
+
+    img {
+      width: 70%;
+      filter: invert(35%) sepia(87%) saturate(1978%) hue-rotate(236deg)
+        brightness(98%) contrast(104%);
+    }
+  }
+
+  .modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: $white;
+
+    /* Modal Content/Box */
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      background-color: $white;
+      padding: 20px;
+      width: 100%;
+      height: 100vh;
+
+      .close {
+        align-self: flex-end;
+        margin-right: 20px;
+        color: #aaa;
+        font-size: 4rem;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      nav {
+        display: block;
+
+        ul {
+          display: flex;
+          list-style: none;
+          flex-direction: column;
+          gap: 13px 0px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 665px) {
+  .modal .modal-content nav {
+    display: block;
+    margin-bottom: 30px;
+
+    ul {
+      margin-left: 0;
+      flex-direction: column;
+      align-items: center;
+
+      a {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}

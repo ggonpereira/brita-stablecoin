@@ -1,4 +1,5 @@
 @import "../../styles/variables";
+@import "../Modal/styles";
 
 header {
   max-width: 1140px;
@@ -14,15 +15,23 @@ header {
     }
   }
 
+  .modal,
   nav {
     display: flex;
     justify-content: flex-end;
     flex: 1;
+    flex-wrap: wrap;
 
     ul {
       list-style-type: none;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .buttons {
+        display: flex;
+      }
 
       li {
         button {
@@ -72,6 +81,46 @@ header {
 
           &:hover {
             opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  header {
+    padding: 0 30px;
+    gap: 10px;
+
+    nav {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 570px) {
+  header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .buttons {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+
+      li {
+        .coinsInAccount {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px 5px;
+        }
+
+        &:last-child {
+          width: 100%;
+
+          button {
+            margin: 0 auto;
           }
         }
       }

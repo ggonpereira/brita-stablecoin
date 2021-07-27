@@ -119,7 +119,7 @@ const BrlBrita: React.FC = (): JSX.Element => {
         <Header />
         <Container>
           <main>
-            <h1>Faça a troca entre criptomoedas facilmente!</h1>
+            <h1>Compre Brita usando reais facilmente!</h1>
             <h3>
               Aproveite nossa facilidade de trocas e taxas mínimas para comprar
               ou vender as criptomoedas desejadas!

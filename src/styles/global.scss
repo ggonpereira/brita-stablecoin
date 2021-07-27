@@ -19,3 +19,21 @@ body {
 a {
   text-decoration: none;
 }
+
+@media (max-width: 740px) {
+  :root {
+    font-size: 56%;
+  }
+}
+
+@media (max-width: 440px) {
+  :root {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 340px) {
+  :root {
+    font-size: 45%;
+  }
+}

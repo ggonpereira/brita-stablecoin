@@ -1,31 +1,43 @@
 import React, { FC, useEffect, useState } from "react";
 import { Route, RouteProps } from "react-router-dom";
-import {} from "react-router-dom";
 import { auth } from "../services/firebase";
 
-import AuthRoute from "../components/AuthRoute/index";
+import { css } from "@emotion/react";
+// import ClipLoader from "react-spinners/ClipLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 
+import AuthRoute from "../components/AuthRoute/index";
 interface ICustomRoutesProps extends RouteProps {
   isPrivate?: boolean;
 }
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+`;
 
 const CustomRoute: FC<ICustomRoutesProps> = ({ isPrivate, ...rest }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("Usuário detectado.");
-      } else {
-        console.log("Não achamos seu usuário. Por favor, faça seu login!");
-      }
-
       setLoading(false);
     });
   }, []);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return (
+      <PuffLoader
+        color={"#835AFD"}
+        loading={loading}
+        css={override}
+        size={150}
+      />
+    );
   }
 
   if (isPrivate) {
