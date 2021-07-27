@@ -51,6 +51,8 @@ https://firebase.google.com/
 
 - Register the project as a Web App
 
+- Enable email/password login provider
+
 - Now copy the SDK project configuration keys and edit the ".env.local.example" file with your data
 
 - Then remove the ".example" from the name, letting it with the name ".env.local"
