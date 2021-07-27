@@ -1,4 +1,5 @@
 import React, { FC, useContext } from "react";
+import toast from "react-hot-toast";
 import { AccountDataContext } from "../../contexts/AccountData";
 
 import { ISellBrlCardProps } from "../../interfaces";
@@ -23,6 +24,9 @@ const SellBrlCard: FC<ISellBrlCardProps> = ({
   const { britas, bitcoins } = useContext(AccountDataContext);
 
   function handleTransaction(e: React.ChangeEvent<HTMLInputElement>) {
+    if (Number(e.target.value) < 0)
+      return toast.error("Use somente valores maiores que zero!");
+
     // Will get the value inputed from user and multiply by actual coin price
     setMoneyInTransaction(Number(e.target.value) * parseMoney(price));
 
@@ -62,6 +66,7 @@ const SellBrlCard: FC<ISellBrlCardProps> = ({
 
           <input
             type="number"
+            min="0"
             placeholder="Formato dos decimais: 0.5"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               handleTransaction(e);

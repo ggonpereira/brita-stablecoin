@@ -47,6 +47,9 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
   }
 
   function handleChangeBitcoinsInAccount(buying: boolean) {
+    if (bitcoinsSold <= 0 || bitcoinsBought <= 0)
+      return toast.error("Por favor, preencha um número maior que zero");
+
     if (buying) {
       if (bitcoins < bitcoinsSold) {
         return toast.error(
@@ -55,6 +58,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
       } else {
         setBitcoinsInAccount(bitcoins - bitcoinsSold);
         setBritasInAccount(Number(britas) + Number(britasBought));
+        toast.success("Transação efetuada com sucesso");
       }
     } else {
       if (britas < britasSold) {
@@ -64,6 +68,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
       } else {
         setBitcoinsInAccount(bitcoins + bitcoinsBought);
         setBritasInAccount(Number(britas) - Number(britasSold));
+        toast.success("Transação efetuada com sucesso");
       }
     }
 
@@ -71,6 +76,9 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
   }
 
   function handleChangeBritasInAccount(buying: boolean) {
+    if (britasSold <= 0 || britasBought <= 0)
+      return toast.error("Por favor, preencha um número maior que zero");
+
     if (buying) {
       if (britas < britasSold) {
         return toast.error(
@@ -79,6 +87,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
       } else {
         setBritasInAccount(britas - britasSold);
         setBitcoinsInAccount(Number(bitcoins) + Number(bitcoinsBought));
+        toast.success("Transação efetuada com sucesso");
       }
     } else {
       if (britas < britasSold) {
@@ -88,6 +97,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
       } else {
         setBritasInAccount(britas + britasBought);
         setBitcoinsInAccount(Number(bitcoins) - Number(bitcoinsSold));
+        toast.success("Transação efetuada com sucesso");
       }
     }
 

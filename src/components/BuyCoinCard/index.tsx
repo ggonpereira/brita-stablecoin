@@ -1,4 +1,5 @@
 import React, { FC, useContext } from "react";
+import toast from "react-hot-toast";
 import { AccountDataContext } from "../../contexts/AccountData";
 
 import { IBuyCoinCardProps } from "../../interfaces";
@@ -25,6 +26,10 @@ const BuyCoinCard: FC<IBuyCoinCardProps> = ({
   const { britas, bitcoins } = useContext(AccountDataContext);
 
   function handleTransaction(e: React.ChangeEvent<HTMLInputElement>) {
+    if (Number(e.target.value) < 0)
+      return toast.error("Use somente valores maiores que zero!");
+
+    // Parsing actual price of coin 1 to convert into price of coin 2
     if (coinName === "Brita") {
       const totalBritaPrice = Number(e.target.value) * parseMoney(britaPrice);
 
@@ -45,6 +50,7 @@ const BuyCoinCard: FC<IBuyCoinCardProps> = ({
   }
 
   function showCoinEquivalent(coinName: string) {
+    // Converting how much coins you can buy from another
     if (coinName === "Brita") {
       const equivalent = parseMoney(britaPrice) / parseMoney(bitcoinPrice);
       return equivalent.toFixed(10);
@@ -83,6 +89,7 @@ const BuyCoinCard: FC<IBuyCoinCardProps> = ({
           </div>
 
           <input
+            min="0"
             type="number"
             placeholder="Formato dos decimais: 0.5"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

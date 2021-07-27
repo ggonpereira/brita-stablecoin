@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  width: 80%;
+  width: 90%;
   max-width: 400px;
   padding: 30px 40px;
   border-radius: 20px;
@@ -138,5 +138,11 @@
 @media (max-width: 1100px) {
   #trade-page .hero .container main section .trade-card {
     place-self: center;
+  }
+}
+
+@media (max-width: 460px) {
+  #trade-page .hero .container main section .trade-card {
+    width: 100%;
   }
 }

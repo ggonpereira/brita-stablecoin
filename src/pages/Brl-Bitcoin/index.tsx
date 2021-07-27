@@ -46,6 +46,9 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
   }
 
   function handleChangeMoneyInAccount(buying: boolean) {
+    if (bitcoinsSold <= 0 || bitcoinsBought <= 0)
+      return toast.error("Por favor, preencha um número maior que zero");
+
     if (buying) {
       if (money < moneyInTransaction) {
         return toast.error(
@@ -53,6 +56,7 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
         );
       } else {
         setMoneyInAccount(money - moneyInTransaction);
+        toast.success("Transação efetuada com sucesso");
       }
     } else {
       if (bitcoins < bitcoinsSold) {
@@ -61,6 +65,7 @@ const BrlBitcoin: React.FC = (): JSX.Element => {
         );
       } else {
         setMoneyInAccount(money + moneyInTransaction);
+        toast.success("Transação efetuada com sucesso");
       }
     }
 
