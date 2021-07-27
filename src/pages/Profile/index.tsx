@@ -50,9 +50,11 @@ const Profile: React.FC = (): JSX.Element => {
                               <td>{transaction.bitcoinsSold}</td>
                               <td>{transaction.britasBought}</td>
                               <td>{transaction.britasSold}</td>
-                              <td>{transaction.moneyInAccount?.toFixed(2)}</td>
                               <td>
-                                {transaction.moneyInTransaction?.toFixed(2)}
+                                R$ {transaction.moneyInAccount?.toFixed(2)}
+                              </td>
+                              <td>
+                                R$ {transaction.moneyInTransaction?.toFixed(2)}
                               </td>
                             </tr>
                           );

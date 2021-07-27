@@ -30,7 +30,7 @@ const Home: React.FC = (): JSX.Element => {
             <h1>Stablecoin rápida, descentralizada e segura.</h1>
             <h3>
               Brita é uma stablecoin lastrada ao dólar americano com uma
-              blockchain revolucionaria
+              blockchain revolucionária
             </h3>
 
             <Button toUrl="/brl-brita">Compre agora mesmo </Button>
