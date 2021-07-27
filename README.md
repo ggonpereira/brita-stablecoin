@@ -46,7 +46,14 @@ $ git clone https://github.com/ggonpereira/brita-stablecoin.git
 - Then access the directory:
 $ cd brita-stablecoin
 
-- Type
+- Create a Firebase project here:
+https://firebase.google.com/
+
+- Now copy the SDK project configuration keys and edit the ".env.local.example" file with your data
+
+- Then remove the ".example" from the name, letting it with the name ".env.local"
+
+- Now type
 
 $ yarn install
 
