@@ -53,7 +53,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     if (buying) {
       if (bitcoins < bitcoinsSold) {
         return toast.error(
-          "Você não possui moedas suficiente para fazer essa transação"
+          "Você não possui Bitcoins suficientes para comprar essa quantia de Britas"
         );
       } else {
         setBitcoinsInAccount(bitcoins - bitcoinsSold);
@@ -63,7 +63,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     } else {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui moedas suficiente para fazer essa transação"
+          "Você não possui Britas suficientes para comprar essa quantia de Bitcoin"
         );
       } else {
         setBitcoinsInAccount(bitcoins + bitcoinsBought);
@@ -79,7 +79,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     if (buying) {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui moedas suficiente para fazer essa transação"
+          "Você não possui Britas suficientes para comprar essa quantia de Bitcoin"
         );
       } else {
         setBritasInAccount(britas - britasSold);
@@ -89,7 +89,7 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     } else {
       if (britas < britasSold) {
         return toast.error(
-          "Você não possui moedas suficiente para fazer essa transação"
+          "Você não possui Bitcoins suficientes para comprar essa quantia de Britas"
         );
       } else {
         setBritasInAccount(britas + britasBought);
