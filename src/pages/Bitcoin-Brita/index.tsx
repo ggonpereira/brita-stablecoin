@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import useGetPrices from "../../hooks/useGetPrices";
 
 import { AccountDataContext } from "../../contexts/AccountData";
+import useSaveLocalStorage from "../../hooks/useSaveLocalStorage";
 
 import BuyCoinCard from "../../components/BuyCoinCard/index";
 
@@ -30,6 +31,8 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
     setBitcoinsInAccount,
   } = useContext(AccountDataContext);
 
+  const { saveBritas, saveBitcoins, saveTransactions } = useSaveLocalStorage();
+
   function handleAddTransaction() {
     const newTransaction = {
       moneyInAccount: money,
@@ -47,9 +50,6 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
   }
 
   function handleChangeBitcoinsInAccount(buying: boolean) {
-    if (bitcoinsSold <= 0 || bitcoinsBought <= 0)
-      return toast.error("Por favor, preencha um número maior que zero");
-
     if (buying) {
       if (bitcoins < bitcoinsSold) {
         return toast.error(
@@ -76,9 +76,6 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
   }
 
   function handleChangeBritasInAccount(buying: boolean) {
-    if (britasSold <= 0 || britasBought <= 0)
-      return toast.error("Por favor, preencha um número maior que zero");
-
     if (buying) {
       if (britas < britasSold) {
         return toast.error(
@@ -105,40 +102,16 @@ const BitcoinBrita: React.FC = (): JSX.Element => {
   }
 
   useEffect(() => {
-    const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const newArray = { ...dataParsed, britas: Number(britas) };
-      localStorage.setItem(
-        "@brita-stablecoin:accountData",
-        JSON.stringify(newArray)
-      );
-    }
-  }, [britas]);
+    saveBritas(britas);
+  }, [saveBritas, britas]);
 
   useEffect(() => {
-    const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const newArray = { ...dataParsed, bitcoins: Number(bitcoins) };
-      localStorage.setItem(
-        "@brita-stablecoin:accountData",
-        JSON.stringify(newArray)
-      );
-    }
-  }, [bitcoins]);
+    saveBitcoins(bitcoins);
+  }, [saveBitcoins, bitcoins]);
 
   useEffect(() => {
-    const dataStored = localStorage.getItem("@brita-stablecoin:accountData");
-    if (dataStored) {
-      const dataParsed = JSON.parse(dataStored);
-      const newArray = { ...dataParsed, transactions };
-      localStorage.setItem(
-        "@brita-stablecoin:accountData",
-        JSON.stringify(newArray)
-      );
-    }
-  }, [transactions]);
+    saveTransactions(transactions);
+  }, [saveTransactions, transactions]);
 
   return (
     <div id="trade-page">
